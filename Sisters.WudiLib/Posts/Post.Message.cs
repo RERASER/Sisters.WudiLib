@@ -31,7 +31,7 @@ namespace Sisters.WudiLib.Posts
         [JsonProperty(TypeField)]
         public string MessageType { get; private set; }
         [JsonProperty("message_id")]
-        public int MessageId { get; private set; }
+        public long MessageId { get; private set; }
         [JsonProperty("message")]
         private object ObjMessage { get; set; }
         [JsonIgnore]
@@ -39,7 +39,7 @@ namespace Sisters.WudiLib.Posts
         [JsonIgnore]
         public ReceivedMessage Content => _messageLazy.Value;
         [JsonProperty("raw_message")]
-        public string RawMessage { get; private set; }
+        public string RawMessage => Content.Text;
         [JsonProperty("font")]
         public int Font { get; private set; }
 
