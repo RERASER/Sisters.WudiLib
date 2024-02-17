@@ -18,7 +18,6 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>C:\Users\yinmi\OneDrive\文档\Visual Studio 2017\Projects\Sisters.WudiLib\Sisters.WudiLib\Sisters.WudiLib.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

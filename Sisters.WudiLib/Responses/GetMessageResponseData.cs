@@ -40,12 +40,12 @@ public class GetMessageResponseData
     /// 消息id。
     /// </summary>
     [JsonProperty("message_id")]
-    public int MessageId { get; set; }
+    public long MessageId { get; set; }
     /// <summary>
     /// 消息真实id。
     /// </summary>
     [JsonProperty("real_id")]
-    public int RealId { get; set; }
+    public long RealId { get; set; }
     /// <summary>
     /// 发送人信息。
     /// </summary>
