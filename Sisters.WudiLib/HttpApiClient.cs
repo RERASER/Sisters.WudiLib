@@ -311,7 +311,7 @@ namespace Sisters.WudiLib
         /// </summary>
         /// <param name="messageId">消息 ID。</param>
         /// <returns>是否成功。</returns>
-        public Task<bool> RecallMessageAsync(int messageId)
+        public Task<bool> RecallMessageAsync(long messageId)
         {
             var data = new { message_id = messageId };
             return PostAsync(RecallUrl, data);
@@ -323,7 +323,7 @@ namespace Sisters.WudiLib
         /// </summary>
         /// <param name="messageId">消息 ID</param>
         /// <returns></returns>
-        public Task<GetMessageResponseData> GetMessage(int messageId)
+        public Task<GetMessageResponseData> GetMessage(long messageId)
         {
             var data = new { message_id = messageId };
             return CallAsync<GetMessageResponseData>("get_msg", data);
