@@ -38,8 +38,8 @@ namespace Sisters.WudiLib.Posts
         private readonly Lazy<ReceivedMessage> _messageLazy;
         [JsonIgnore]
         public ReceivedMessage Content => _messageLazy.Value;
-        [JsonProperty("raw_message")]
-        public string RawMessage => Content.Text;
+        [JsonIgnore]
+        public string RawMessage => string.IsNullOrEmpty(Content.Text) ? Content.Raw : Content.Text;
         [JsonProperty("font")]
         public int Font { get; private set; }
 
