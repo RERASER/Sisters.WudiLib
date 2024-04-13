@@ -356,6 +356,9 @@ namespace Sisters.WudiLib.Posts
                 case Post.Message:
                     ProcessMessage(contentObject);
                     return null;
+                case Post.SelfMessage:
+                    ProcessMessage(contentObject);//没想好怎么标识,先这样了
+                    return null;
                 case Post.Notice:
                     ProcessNotice(contentObject);
                     return null;
