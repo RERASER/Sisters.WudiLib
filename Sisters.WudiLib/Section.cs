@@ -196,27 +196,27 @@ namespace Sisters.WudiLib
         /// </summary>
         /// <param name="text"></param>
         /// <returns></returns>
-        internal static Section Text(string text) => new Section(TextType, (TextParamName, text));
+        public static Section Text(string text) => new Section(TextType, (TextParamName, text));
 
         /// <summary>
         /// 构造 At 消息段。
         /// </summary>
         /// <param name="qq"></param>
         /// <returns></returns>
-        internal static Section At(long qq) => new Section(AtType, ("qq", qq.ToString()));
+        public static Section At(long qq) => new Section(AtType, ("qq", qq.ToString()));
 
         /// <summary>
         /// 构造 At 全体成员消息段。
         /// </summary>
         /// <returns></returns>
-        internal static Section AtAll() => new Section(AtType, ("qq", "all"));
+        public static Section AtAll() => new Section(AtType, ("qq", "all"));
 
         /// <summary>
         /// 构造本地图片消息段。
         /// </summary>
         /// <param name="file"></param>
         /// <returns></returns>
-        internal static Section LocalImage(string file)
+        public static Section LocalImage(string file)
         {
             try
             {
@@ -228,14 +228,14 @@ namespace Sisters.WudiLib
             }
         }
 
-        internal static Section ByteArrayImage(byte[] bytes) => new Section(ImageType, ("file", $"base64://{Convert.ToBase64String(bytes)}"));
+        public static Section ByteArrayImage(byte[] bytes) => new Section(ImageType, ("file", $"base64://{Convert.ToBase64String(bytes)}"));
 
         /// <summary>
         /// 构造网络图片消息段。
         /// </summary>
         /// <param name="url"></param>
         /// <returns></returns>
-        internal static Section NetImage(string url) => new Section(ImageType, ("file", url));
+        public static Section NetImage(string url) => new Section(ImageType, ("file", url));
 
         /// <summary>
         /// 构造网络图片消息段。可以指定是否使用缓存。
@@ -243,18 +243,18 @@ namespace Sisters.WudiLib
         /// <param name="url"></param>
         /// <param name="noCache">是否使用缓存。</param>
         /// <returns></returns>
-        internal static Section NetImage(string url, bool noCache)
+        public static Section NetImage(string url, bool noCache)
             => noCache ? new Section(ImageType, ("cache", "0"), ("file", url)) : NetImage(url);
 
 #nullable enable
-        internal static Section LocalRecord(string file) => new Section(RecordType, ("file", CreateFileUri(file)));
+        public static Section LocalRecord(string file) => new Section(RecordType, ("file", CreateFileUri(file)));
 
-        internal static Section ByteArrayRecord(byte[] bytes) => new Section(RecordType, ("file", $"base64://{Convert.ToBase64String(bytes)}"));
+        public static Section ByteArrayRecord(byte[] bytes) => new Section(RecordType, ("file", $"base64://{Convert.ToBase64String(bytes)}"));
 #nullable restore
 
-        internal static Section NetRecord(string url) => new Section(RecordType, ("file", url));
+        public static Section NetRecord(string url) => new Section(RecordType, ("file", url));
 
-        internal static Section NetRecord(string url, bool noCache)
+        public static Section NetRecord(string url, bool noCache)
         {
             return noCache ? new Section(RecordType, ("cache", "0"), ("file", url)) : NetRecord(url);
         }
@@ -270,7 +270,7 @@ namespace Sisters.WudiLib
         /// <exception cref="ArgumentException"><c>introductionUrl</c>或<c>audioUrl</c>或<c>title</c>为空。</exception>
         /// <exception cref="ArgumentNullException"><c>introductionUrl</c>或<c>audioUrl</c>或<c>title</c>为<c>null</c>。</exception>
         /// <returns></returns>
-        internal static Section MusicCustom(string introductionUrl, string audioUrl, string title, string profile,
+        public static Section MusicCustom(string introductionUrl, string audioUrl, string title, string profile,
             string imageUrl)
         {
             const string introductionUrlParamName = "url";
@@ -295,10 +295,10 @@ namespace Sisters.WudiLib
             return new Section(MusicType, arguments.ToArray());
         }
 
-        internal static Section Shake() => new Section("shake");
+        public static Section Shake() => new Section("shake");
 
 #nullable enable
-        private static string CreateFileUri(string file)
+        public static string CreateFileUri(string file)
         {
             return (file.StartsWith("/", StringComparison.Ordinal), Path.IsPathRooted(file), RuntimeInformation.IsOSPlatform(OSPlatform.Windows)) switch
             {
@@ -314,5 +314,10 @@ namespace Sisters.WudiLib
             => left is null ? right is null : left.Equals(right);
 
         public static bool operator !=(Section left, Section right) => !(left == right);
+
+        public static implicit operator Section(string s)
+        {
+            return Section.Text(s);
+        }
     }
 }

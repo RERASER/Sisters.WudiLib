@@ -41,7 +41,7 @@ namespace Sisters.WudiLib
         /// 从 <see cref="IEnumerable{Section}"/> 创建消息。
         /// </summary>
         /// <param name="sections"></param>
-        internal SendingMessage(IEnumerable<Section> sections) : base(sections)
+        public SendingMessage(IEnumerable<Section> sections) : base(sections)
         {
             // ignored
         }
