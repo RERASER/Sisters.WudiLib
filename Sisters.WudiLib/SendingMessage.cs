@@ -131,14 +131,14 @@ namespace Sisters.WudiLib
         /// <param name="bytes">图片 <see cref="byte"/> 数组。</param>
         /// <exception cref="ArgumentNullException"><c>bytes</c> 为 <c>null</c>。</exception>
         /// <returns>构造的消息。</returns>
-        public static SendingMessage ByteArrayImage(byte[] bytes)
+        public static SendingMessage ByteArrayImage(byte[] bytes, int subType = 0)
         {
             if (bytes is null)
             {
                 throw new ArgumentNullException(nameof(bytes));
             }
 
-            return new SendingMessage(Section.ByteArrayImage(bytes));
+            return new SendingMessage(Section.ByteArrayImage(bytes, subType));
         }
 
         /// <summary>

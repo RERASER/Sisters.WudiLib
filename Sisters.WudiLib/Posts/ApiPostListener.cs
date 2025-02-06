@@ -476,6 +476,9 @@ namespace Sisters.WudiLib.Posts
                     // TODO: 此处代码未测试。
                     GroupBanEvent?.Invoke(ApiClient, contentObject.ToObject<GroupBanNotice>());
                     break;
+                case Notice.Notify:
+                    OtherNoticeEvent?.Invoke(ApiClient, contentObject);
+                    break;
                 default:
                     // TODO: Logging
                     break;
@@ -534,6 +537,8 @@ namespace Sisters.WudiLib.Posts
         /// 已设置新的群管理员。
         /// </summary>
         public event Action<HttpApiClient, GroupAdminNotice> GroupAdminSetEvent;
+        public event Action<HttpApiClient, JObject> OtherNoticeEvent;
+
 
         /// <summary>
         /// 已取消群管理员。

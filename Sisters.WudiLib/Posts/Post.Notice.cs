@@ -10,6 +10,7 @@ namespace Sisters.WudiLib.Posts
         internal const string GroupIncrease = "group_increase";
         internal const string GroupBan = "group_ban";
         internal const string FriendAdd = "friend_add";
+        internal const string Notify = "notify";
 
         internal new const string TypeField = "notice_type";
 
