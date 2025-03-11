@@ -165,10 +165,11 @@ namespace Sisters.WudiLib.Posts
         /// <returns>读取到的内容。</returns>
         private string GetContentAndForward(HttpListenerRequest request)
         {
-            byte[] bytes = new byte[request.ContentLength64];
-            using (var ms = new MemoryStream(bytes))
+            byte[] bytes;
+            using (var ms = new MemoryStream())
             {
                 request.InputStream.CopyTo(ms);
+                bytes=ms.ToArray();
             }
             (request.InputStream as IDisposable).Dispose();
 
