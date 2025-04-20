@@ -228,7 +228,7 @@ namespace Sisters.WudiLib
             }
         }
 
-        public static Section ByteArrayImage(byte[] bytes,int subType=0) => new Section(ImageType, ("file", $"base64://{Convert.ToBase64String(bytes)}"),("subType",subType.ToString()));
+        public static Section ByteArrayImage(byte[] bytes,int subType=0) => new Section(ImageType, ("file", $"base64://{Convert.ToBase64String(bytes)}"),("sub_type",subType==1?"1":"0"));
 
         /// <summary>
         /// 构造网络图片消息段。
